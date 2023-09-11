@@ -7,3 +7,10 @@
     @apply bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-slate-50;
   }
 }
+
+@layer components {
+  header a,
+  footer a {
+    @apply text-neutral-950 transition-colors duration-200 hover:text-neutral-800 active:text-neutral-700 dark:text-neutral-50 dark:hover:text-neutral-200 dark:active:text-neutral-300;
+  }
+}
