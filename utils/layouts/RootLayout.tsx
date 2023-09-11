@@ -19,7 +19,7 @@ function RootLayout({ title, metaDescription, children }: RootLayoutProps) {
       <div className="grid-rows-root-layout grid min-h-screen">
         <Header />
         <div className="flex justify-center">
-          <main className="container m-2">{children}</main>
+          <main className="container m-4">{children}</main>
         </div>
         <Footer />
       </div>
