@@ -7,22 +7,22 @@ import Link from "next/link";
 
 function Footer() {
   return (
-    <footer className="flex flex-col items-center gap-4">
-      <p className="block text-lg">
+    <footer className="flex items-center justify-center gap-4 px-4 py-2">
+      <p className="block">
         Copyright <FontAwesomeIcon icon={faCopyright} />{" "}
         {dayjs().format("YYYY")} Ben Reiner. All rights reserved.
       </p>
       <div className="flex items-center gap-4">
         <Link
           href="https://github.com/reinerb"
-          className="block text-5xl"
+          className="block text-2xl"
           aria-label="View my GitHub"
         >
           <FontAwesomeIcon icon={faGithub} />
         </Link>
         <Link
           href="https://www.linkedin.com/in/benjamin-t-reiner/"
-          className="block text-5xl"
+          className="block text-2xl"
           aria-label="Find me on LinkedIn"
         >
           <FontAwesomeIcon icon={faLinkedinIn} />
