@@ -1,4 +1,3 @@
-import Footer from "@/utils/components/RootLayout/Footer";
 import RootLayout from "@/utils/layouts/RootLayout";
 
 export default function Home() {
