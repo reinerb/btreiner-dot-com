@@ -48,8 +48,8 @@ export async function projectsQuery(
 // Query function for tools
 export async function toolQuery(params?: QueryParameters): Promise<Tool[]> {
   const url = `${WP_URL}/wp-json/wp/v2/tools?_fields=id,slug,name${
-    params?.fields && `,${params?.fields.join(",")}`
-  }${params?.slug && `,&slug=${params?.slug}`}`;
+    params?.fields ? `,${params?.fields.join(",")}` : ""
+  }${params?.slug ? `,&slug=${params?.slug}` : ""}`;
 
   const response = await fetch(url, { method: "GET" });
 
@@ -68,8 +68,10 @@ export async function toolQuery(params?: QueryParameters): Promise<Tool[]> {
   return queryData.map(({ name, ...element }) => {
     let data = {
       ...element,
-      title: decode(name),
+      title: name,
     };
+
+    console.log(name);
 
     return JSON.parse(JSON.stringify(data));
   });
