@@ -3,6 +3,7 @@ type Fields =
   | "acf"
   | "date"
   | "excerpt"
+  | "content"
   | "featured_media"
   | "id"
   | "slug"
@@ -43,6 +44,7 @@ export type ProjectResponse = {
     protected: boolean;
   };
   tools: number[];
+  featured_media: number;
 };
 
 export type ToolResponse = {
@@ -52,8 +54,8 @@ export type ToolResponse = {
 };
 
 export type MediaResponse = {
-  link: string;
-  altText: string;
+  source_url: string;
+  alt_text: string;
 };
 
 // Clean data
@@ -71,11 +73,16 @@ export type Project = BaseData & {
   excerpt?: string;
   content?: string;
   tools: number[];
+  featured_media: number;
 };
 
-export type Tool = BaseData;
+export type Tool = {
+  id: number;
+  slug: string;
+  title: string;
+};
 
 export type Media = {
-  link: string;
-  altText: string;
+  src: string;
+  alt: string;
 };

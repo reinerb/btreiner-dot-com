@@ -13,13 +13,12 @@ import type {
 const WP_URL = "https://api.btreiner.com";
 
 // Query function for multiple projects
-export async function projectsQuery({
-  fields,
-  slug,
-}: QueryParameters): Promise<Project[]> {
+export async function projectsQuery(
+  params?: QueryParameters,
+): Promise<Project[]> {
   const url = `${WP_URL}/wp-json/wp/v2/projects?_fields=id,slug,title${
-    fields && `,${fields.join(",")}`
-  }${slug && `,&slug=${slug}`}`;
+    params?.fields ? `,${params?.fields.join(",")}` : ""
+  }${params?.slug ? `,&slug=${params?.slug}` : ""}`;
 
   const response = await fetch(url, { method: "GET" });
 
@@ -38,7 +37,7 @@ export async function projectsQuery({
   return queryData.map(({ title, content, ...element }) => {
     let data = {
       ...element,
-      title: title.rendered,
+      title: decode(title.rendered),
       content: content?.rendered,
     };
 
@@ -47,13 +46,10 @@ export async function projectsQuery({
 }
 
 // Query function for tools
-export async function toolQuery({
-  fields,
-  slug,
-}: QueryParameters): Promise<Tool[]> {
+export async function toolQuery(params?: QueryParameters): Promise<Tool[]> {
   const url = `${WP_URL}/wp-json/wp/v2/tools?_fields=id,slug,name${
-    fields && `,${fields.join(",")}`
-  }${slug && `,&slug=${slug}`}`;
+    params?.fields && `,${params?.fields.join(",")}`
+  }${params?.slug && `,&slug=${params?.slug}`}`;
 
   const response = await fetch(url, { method: "GET" });
 
@@ -72,7 +68,7 @@ export async function toolQuery({
   return queryData.map(({ name, ...element }) => {
     let data = {
       ...element,
-      title: name,
+      title: decode(name),
     };
 
     return JSON.parse(JSON.stringify(data));
@@ -83,11 +79,14 @@ export async function toolQuery({
 export async function singleMediaQuery({
   id,
 }: MediaQueryParameters): Promise<Media> {
-  const url = `${WP_URL}/wp-json/wp/v2/media/${id}?_fields=link,alt_text`;
+  const url = `${WP_URL}/wp-json/wp/v2/media/${id}?_fields=source_url,alt_text`;
 
   const response: MediaResponse = await fetch(url, { method: "GET" }).then(
     (res) => res.json(),
   );
 
-  return response;
+  return {
+    src: response.source_url,
+    alt: response.alt_text,
+  };
 }
