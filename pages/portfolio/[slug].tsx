@@ -8,6 +8,7 @@ import {
 } from "@/utils/queries/wpQueryHandler";
 import RootLayout from "@/utils/layouts/RootLayout";
 import Image from "next/image";
+import LinkButton from "@/utils/components/LinkButton";
 
 type ProjectPageProps = {
   project: Project;
@@ -29,7 +30,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const tools = allTools.filter((tool) => project.tools.includes(tool.id));
 
-  console.log(tools);
+  console.log(project.acf);
 
   return { props: { project, featuredMedia, tools } };
 };
@@ -80,6 +81,26 @@ function ProjectPage({ project, tools, featuredMedia }: ProjectPageProps) {
               ))}
             </ul>
           </section>
+          {project.acf && (
+            <section className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <LinkButton
+                href={project.acf.liveUrl}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                View the Live Site
+              </LinkButton>
+              {project.acf.githubUrl && (
+                <LinkButton
+                  href={project.acf.githubUrl}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  View Source Code on GitHub
+                </LinkButton>
+              )}
+            </section>
+          )}
         </article>
       </div>
     </RootLayout>
