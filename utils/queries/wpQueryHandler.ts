@@ -20,8 +20,6 @@ export async function projectsQuery(
     params?.fields ? `,${params?.fields.join(",")}` : ""
   }${params?.slug ? `,&slug=${params?.slug}` : ""}`;
 
-  console.log(url);
-
   const response = await fetch(url, { method: "GET" });
 
   const pagination = await Number(response.headers.get("X-WP-TotalPages"));

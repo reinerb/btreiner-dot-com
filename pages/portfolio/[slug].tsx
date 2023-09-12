@@ -30,8 +30,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const tools = allTools.filter((tool) => project.tools.includes(tool.id));
 
-  console.log(project.acf);
-
   return { props: { project, featuredMedia, tools } };
 };
 
@@ -61,6 +59,7 @@ function ProjectPage({ project, tools, featuredMedia }: ProjectPageProps) {
               alt={featuredMedia.alt}
               width={0}
               height={0}
+              unoptimized
               className="h-auto w-full"
             />
           )}
