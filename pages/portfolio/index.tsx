@@ -6,7 +6,7 @@ import {
   projectsQuery,
   toolQuery,
 } from "@/utils/queries/wpQueryHandler";
-import type { Media, Project } from "@/utils/types/WordPressQueries";
+import type { Project } from "@/utils/types/WordPressQueries";
 import ProjectCard from "@/utils/components/portfolio/ProjectCard";
 import ProjectGrid from "@/utils/components/portfolio/ProjectGrid";
 

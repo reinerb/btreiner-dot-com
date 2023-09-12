@@ -34,11 +34,12 @@ export async function projectsQuery(
     }
   }
 
-  return queryData.map(({ title, content, ...element }) => {
+  return queryData.map(({ title, content, excerpt, ...element }) => {
     let data = {
       ...element,
       title: decode(title.rendered),
       content: content?.rendered,
+      excerpt: excerpt?.rendered,
     };
 
     return JSON.parse(JSON.stringify(data));
