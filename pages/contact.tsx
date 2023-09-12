@@ -8,7 +8,7 @@ function Contact() {
       title="Contact | Ben Reiner"
       metaDescription="Need a frontend developer to help bring your vision to life? Send me a message!"
     >
-      <h1>Contact</h1>
+      <h1 className="mb-4 text-2xl font-bold">Contact Me</h1>
       <ContactForm />
     </RootLayout>
   );
