@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { twMerge } from "tailwind-merge";
 
-interface LinkButtonProps {
+type LinkButtonProps = {
   href: string;
   children: React.ReactNode;
   inverted?: boolean;
@@ -11,7 +11,7 @@ interface LinkButtonProps {
   target?: string;
   rel?: string;
   className?: string;
-}
+};
 
 function LinkButton({
   children,
