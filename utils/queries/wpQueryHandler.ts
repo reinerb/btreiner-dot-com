@@ -3,7 +3,7 @@ import type {
   Media,
   MediaQueryParameters,
   MediaResponse,
-  Project,
+  ProjectData,
   ProjectResponse,
   QueryParameters,
   Tool,
