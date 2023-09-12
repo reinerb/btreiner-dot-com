@@ -39,9 +39,12 @@ function ProjectCard({ project, className }: PortfolioCardProps) {
         <p className="text-sm italic">
           {project.tools.map((tool) => tool.title).join(", ")}
         </p>
-        <LinkButton href={`/portfolio/${project.slug}`} small>
+        <div
+          aria-hidden
+          className="border border-primary-300 px-2 py-1 text-sm text-primary-300 transition-colors duration-200 hover:border-primary-200 hover:text-primary-200 active:border-primary-100 active:text-primary-100"
+        >
           Read More
-        </LinkButton>
+        </div>
       </div>
     </Link>
   );
