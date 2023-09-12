@@ -7,7 +7,7 @@ function RootNav() {
     <nav>
       <ul className="font-lg flex items-center gap-3 font-semibold sm:gap-4 sm:text-lg">
         <li>
-          <Link href="/about">About</Link>
+          <Link href="/">Home</Link>
         </li>
         <li>
           <Link href="/portfolio">Portfolio</Link>
@@ -18,7 +18,7 @@ function RootNav() {
           </Link>
         </li>
         <li>
-          <Link href="/blog">Blog</Link>
+          <Link href="/about">About</Link>
         </li>
         <li>
           <Link href="/contact">Contact</Link>
