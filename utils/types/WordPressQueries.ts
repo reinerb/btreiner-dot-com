@@ -54,6 +54,7 @@ export type ToolResponse = {
 };
 
 export type MediaResponse = {
+  id?: number;
   source_url: string;
   alt_text: string;
 };
@@ -83,6 +84,7 @@ export type Tool = {
 };
 
 export type Media = {
+  id?: number;
   src: string;
   alt: string;
 };

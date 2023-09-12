@@ -90,3 +90,34 @@ export async function singleMediaQuery({
     alt: response.alt_text,
   };
 }
+
+// Query all images
+export async function allMediaQuery(
+  params?: MediaQueryParameters,
+): Promise<Media[]> {
+  const url = `${WP_URL}/wp-json/wp/v2/media?_fields=id,source_url,alt_text${
+    params?.fields ? `,${params.fields.join(",")}` : ""
+  }`;
+
+  const response = await fetch(url, { method: "GET" });
+
+  const pagination = await Number(response.headers.get("X-WP-TotalPages"));
+  let queryData: MediaResponse[] = await response.json();
+
+  if (pagination > 1) {
+    for (let i = 2; i <= pagination; i++) {
+      let newResponse: MediaResponse[] = await fetch(`${url}&page=${i}`, {
+        method: "GET",
+      }).then((res) => res.json());
+      queryData = [...queryData, ...newResponse];
+    }
+  }
+
+  return queryData.map(({ source_url, alt_text, ...media }) => {
+    return {
+      ...media,
+      src: source_url,
+      alt: alt_text,
+    };
+  });
+}
