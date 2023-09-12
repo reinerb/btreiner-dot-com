@@ -15,7 +15,7 @@ const WP_URL = "https://api.btreiner.com";
 // Query function for multiple projects
 export async function projectsQuery(
   params?: QueryParameters,
-): Promise<Project[]> {
+): Promise<ProjectData[]> {
   const url = `${WP_URL}/wp-json/wp/v2/projects?_fields=id,slug,title${
     params?.fields ? `,${params?.fields.join(",")}` : ""
   }${params?.slug ? `,&slug=${params?.slug}` : ""}`;

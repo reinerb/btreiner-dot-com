@@ -65,7 +65,7 @@ export type BaseData = {
   title: string;
 };
 
-export type Project = BaseData & {
+export type ProjectData = BaseData & {
   acf?: {
     liveUrl: string;
     githubUrl?: string;
@@ -85,4 +85,9 @@ export type Tool = {
 export type Media = {
   src: string;
   alt: string;
+};
+
+export type Project = Omit<ProjectData, "tools" | "featured_media"> & {
+  tools: Tool[];
+  featuredMedia: Media;
 };

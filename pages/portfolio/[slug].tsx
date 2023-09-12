@@ -1,5 +1,4 @@
 import React from "react";
-import type { Media, Project, Tool } from "@/utils/types/WordPressQueries";
 import { GetStaticPaths, GetStaticProps } from "next";
 import {
   projectsQuery,
@@ -9,28 +8,35 @@ import {
 import RootLayout from "@/utils/layouts/RootLayout";
 import Image from "next/image";
 import LinkButton from "@/utils/components/LinkButton";
+import type { Project, Tool } from "@/utils/types/WordPressQueries";
 
-type ProjectPageProps = {
-  project: Project;
-  tools: Tool[];
-  featuredMedia?: Media;
-};
+type ProjectPageProps = Project;
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps<ProjectPageProps> = async (
+  context,
+) => {
   const slug = context.params?.slug as string;
 
-  const project = await projectsQuery({
+  const projectData = await projectsQuery({
     slug,
     fields: ["acf", "content", "tools", "featured_media"],
   }).then((res) => res[0]);
 
-  const featuredMedia = await singleMediaQuery({ id: project.featured_media });
+  const featuredMedia = await singleMediaQuery({
+    id: projectData.featured_media,
+  });
 
   const allTools: Tool[] = await toolQuery();
 
-  const tools = allTools.filter((tool) => project.tools.includes(tool.id));
+  const tools = allTools.filter((tool) => projectData.tools.includes(tool.id));
 
-  return { props: { project, featuredMedia, tools } };
+  const project: Project = {
+    ...projectData,
+    tools,
+    featuredMedia,
+  };
+
+  return { props: { ...project } };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -47,9 +53,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: false };
 };
 
-function ProjectPage({ project, tools, featuredMedia }: ProjectPageProps) {
+function ProjectPage({
+  title,
+  featuredMedia,
+  content,
+  tools,
+  acf,
+}: ProjectPageProps) {
   return (
-    <RootLayout title={`${project.title} | Ben Reiner`}>
+    <RootLayout title={`${title} | Ben Reiner`}>
       <div className="grid gap-8 xl:grid-cols-2">
         <div className="relative">
           {featuredMedia && (
@@ -65,11 +77,11 @@ function ProjectPage({ project, tools, featuredMedia }: ProjectPageProps) {
           )}
         </div>
         <article className="flex flex-col gap-4">
-          <h1 className="text-2xl font-bold">{project.title}</h1>
-          {project.content && (
+          <h1 className="text-2xl font-bold">{title}</h1>
+          {content && (
             <section
               className="flex flex-col gap-1"
-              dangerouslySetInnerHTML={{ __html: project.content }}
+              dangerouslySetInnerHTML={{ __html: content }}
             />
           )}
           <section>
@@ -80,18 +92,18 @@ function ProjectPage({ project, tools, featuredMedia }: ProjectPageProps) {
               ))}
             </ul>
           </section>
-          {project.acf && (
+          {acf && (
             <section className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <LinkButton
-                href={project.acf.liveUrl}
+                href={acf.liveUrl}
                 rel="noopener noreferrer"
                 target="_blank"
               >
                 View the Live Site
               </LinkButton>
-              {project.acf.githubUrl && (
+              {acf.githubUrl && (
                 <LinkButton
-                  href={project.acf.githubUrl}
+                  href={acf.githubUrl}
                   rel="noopener noreferrer"
                   target="_blank"
                 >
