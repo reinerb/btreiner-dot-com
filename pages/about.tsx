@@ -8,6 +8,7 @@ function About() {
   return (
     <RootLayout
       title="About | Ben Reiner"
+      metaDescription="Hi! I'm Ben Reiner, a freelance frontend developer. Come learn more about me!"
       className="grid gap-4 md:grid-cols-3 xl:grid-cols-4 xl:gap-8"
     >
       <Image
