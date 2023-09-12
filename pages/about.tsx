@@ -53,15 +53,15 @@ function About() {
           <p>
             Between self-teaching and working, I have learned a number of front-
             and back-end technologies, including:
-            <ul role="list" className="ml-1 mt-1 list-inside list-disc">
-              <li>HTML5 and CSS3</li>
-              <li>JavaScript and TypeScript</li>
-              <li>React and NextJS</li>
-              <li>Bootstrap and TailwindCSS</li>
-              <li>WordPress</li>
-              <li>PHP</li>
-            </ul>
           </p>
+          <ul role="list" className="ml-1 list-inside list-disc">
+            <li>HTML5 and CSS3</li>
+            <li>JavaScript and TypeScript</li>
+            <li>React and NextJS</li>
+            <li>Bootstrap and TailwindCSS</li>
+            <li>WordPress</li>
+            <li>PHP</li>
+          </ul>
           <p>
             A copy of my resume is available{" "}
             <Link href="/resume.pdf">here</Link>.
