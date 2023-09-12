@@ -7,6 +7,8 @@ import {
   toolQuery,
 } from "@/utils/queries/wpQueryHandler";
 import type { Media, Project } from "@/utils/types/WordPressQueries";
+import ProjectCard from "@/utils/components/portfolio/ProjectCard";
+import ProjectGrid from "@/utils/components/portfolio/ProjectGrid";
 
 type PortfolioPageProps = {
   projects: Project[];
@@ -39,9 +41,11 @@ function PortfolioPage({ projects }: PortfolioPageProps) {
   return (
     <RootLayout title="Portfolio | Ben Reiner">
       <h1 className="text-2xl font-bold">My Portfolio</h1>
-      {projects.map((project) => (
-        <div key={project.id}>{project.title}</div>
-      ))}
+      <ProjectGrid>
+        {projects.map((project) => (
+          <ProjectCard key={project.id} project={project} />
+        ))}
+      </ProjectGrid>
     </RootLayout>
   );
 }
