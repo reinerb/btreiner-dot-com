@@ -9,6 +9,8 @@ import RootLayout from "@/utils/layouts/RootLayout";
 import Image from "next/image";
 import LinkButton from "@/utils/components/LinkButton";
 import type { Project, Tool } from "@/utils/types/WordPressQueries";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLeftLong } from "@fortawesome/free-solid-svg-icons";
 
 type ProjectPageProps = Project;
 
@@ -63,7 +65,7 @@ function ProjectPage({
   return (
     <RootLayout title={`${title} | Ben Reiner`}>
       <div className="grid gap-8 xl:grid-cols-2">
-        <div className="relative">
+        <div className="order-2 xl:order-1">
           {featuredMedia && (
             <Image
               loader={() => featuredMedia.src}
@@ -75,8 +77,11 @@ function ProjectPage({
               className="h-auto w-full"
             />
           )}
+          <LinkButton href="/portfolio" className="mt-4 w-fit">
+            <FontAwesomeIcon icon={faLeftLong} /> Return to Portfolio
+          </LinkButton>
         </div>
-        <article className="flex flex-col gap-4">
+        <article className="order-1 flex flex-col gap-4 xl:order-2">
           <h1 className="text-2xl font-bold">{title}</h1>
           {content && (
             <section
@@ -98,6 +103,7 @@ function ProjectPage({
                 href={acf.liveUrl}
                 rel="noopener noreferrer"
                 target="_blank"
+                primary
               >
                 View the Live Site
               </LinkButton>
@@ -106,6 +112,7 @@ function ProjectPage({
                   href={acf.githubUrl}
                   rel="noopener noreferrer"
                   target="_blank"
+                  primary
                 >
                   View Source Code on GitHub
                 </LinkButton>
