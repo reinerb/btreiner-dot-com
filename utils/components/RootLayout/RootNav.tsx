@@ -10,7 +10,7 @@ function RootNav() {
           <Link href="/about">About</Link>
         </li>
         <li>
-          <Link href="/projects">Portfolio</Link>
+          <Link href="/portfolio">Portfolio</Link>
         </li>
         <li>
           <Link href="/" aria-label="Home">
