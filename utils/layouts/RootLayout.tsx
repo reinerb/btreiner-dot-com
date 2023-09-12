@@ -2,24 +2,33 @@ import Head from "next/head";
 import React from "react";
 import Header from "../components/RootLayout/Header";
 import Footer from "../components/RootLayout/Footer";
+import { twMerge } from "tailwind-merge";
 
 type RootLayoutProps = {
   title: string;
   metaDescription?: string;
   children: React.ReactNode;
+  className?: string;
 };
 
-function RootLayout({ title, metaDescription, children }: RootLayoutProps) {
+function RootLayout({
+  title,
+  metaDescription,
+  children,
+  className,
+}: RootLayoutProps) {
   return (
     <>
       <Head>
         <title>{title}</title>
         <meta name="description" content={metaDescription} />
       </Head>
-      <div className="grid-rows-root-layout grid min-h-screen">
+      <div className="grid min-h-screen grid-rows-root-layout">
         <Header />
         <div className="flex justify-center">
-          <main className="container m-4">{children}</main>
+          <main className={twMerge("container m-4", className)}>
+            {children}
+          </main>
         </div>
         <Footer />
       </div>
