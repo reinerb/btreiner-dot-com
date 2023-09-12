@@ -8,6 +8,9 @@ const config: Config = {
   darkMode: ["class"],
   theme: {
     extend: {
+      screens: {
+        anyhover: { raw: "(any-hover: hover)" },
+      },
       gridTemplateRows: {
         "root-layout": "auto 1fr auto",
       },

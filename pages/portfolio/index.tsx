@@ -40,7 +40,7 @@ export const getStaticProps: GetStaticProps<PortfolioPageProps> = async () => {
 function PortfolioPage({ projects }: PortfolioPageProps) {
   return (
     <RootLayout title="Portfolio | Ben Reiner">
-      <h1 className="text-2xl font-bold">My Portfolio</h1>
+      <h1 className="mb-4 text-2xl font-bold">My Portfolio</h1>
       <ProjectGrid>
         {projects.map((project) => (
           <ProjectCard key={project.id} project={project} />

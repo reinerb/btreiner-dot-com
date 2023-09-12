@@ -3,6 +3,7 @@ import { Project } from "@/utils/types/WordPressQueries";
 import Link from "next/link";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
+import LinkButton from "../LinkButton";
 
 type PortfolioCardProps = {
   project: Project;
@@ -27,7 +28,8 @@ function ProjectCard({ project, className }: PortfolioCardProps) {
       <div
         className={twMerge(
           "absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center gap-2 p-4 text-center",
-          "bg-primary-900 bg-opacity-70 text-neutral-50 opacity-0 bg-blend-overlay transition-opacity duration-300 group-hover:opacity-100",
+          "bg-neutral-950 bg-opacity-80 text-neutral-50  bg-blend-overlay outline-1 outline-secondary-50 transition-opacity duration-300",
+          "anyhover:group-hover:opacity-100 anyhover:opacity-0 anyhover:group-focus-within:opacity-100",
         )}
       >
         <h2 className="text-xl font-semibold">{project.title}</h2>
@@ -37,6 +39,9 @@ function ProjectCard({ project, className }: PortfolioCardProps) {
         <p className="text-sm italic">
           {project.tools.map((tool) => tool.title).join(", ")}
         </p>
+        <LinkButton href={`/portfolio/${project.slug}`} small>
+          Read More
+        </LinkButton>
       </div>
     </Link>
   );
