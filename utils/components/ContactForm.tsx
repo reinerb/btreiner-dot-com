@@ -5,7 +5,7 @@ import { twMerge } from "tailwind-merge";
 import Button from "./Button";
 import * as Yup from "yup";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 
 type ContactFormProps = {
   className?: string;
@@ -30,47 +30,37 @@ function ContactForm({ className }: ContactFormProps) {
   });
   const [submitted, setSubmitted] = useState<boolean>(false);
 
-  const handleReCaptcha = useCallback(async () => {
+  const handleSubmit = async (values: FormValues) => {
+    // If executeRecaptcha doesn't work, fail.
     if (!executeRecaptcha) {
-      console.error("executeRecaptcha not yet available");
-      return -1;
+      setError({ tripped: true, message: "reCaptcha not initialized" });
+      return;
     }
 
+    // Get reCaptcha token
     const token = await executeRecaptcha("onSubmit");
 
-    try {
-      const verify = await fetch("/api/recaptcha", {
-        method: "POST",
-        body: JSON.stringify({ token }),
-      }).then((res) => res.json());
+    // Bundle form values and reCaptcha token
+    const submission = { formData: values, token };
 
-      return verify.score as number;
+    // Submit data
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: JSON.stringify(submission),
+      }).then((res) => res.json());
+      console.log(response);
+
+      if (response.success) {
+        setSubmitted(true);
+      }
     } catch (e) {
       if (typeof e === "string") {
         setError({ tripped: true, message: e });
       } else if (e instanceof Error) {
         setError({ tripped: true, message: e.message });
       }
-      return -1;
     }
-  }, [executeRecaptcha]);
-
-  const handleSubmit = async (values: FormValues) => {
-    const score = await handleReCaptcha();
-
-    if (error.tripped) return;
-
-    if (score <= 0.5) {
-      setError({ tripped: true, message: "reCaptcha did not pass." });
-      return;
-    }
-
-    const response = await fetch("/api/contact", {
-      method: "POST",
-      body: JSON.stringify(values),
-    });
-
-    console.log(await response.json());
   };
 
   return (
@@ -83,94 +73,100 @@ function ContactForm({ className }: ContactFormProps) {
       })}
       onSubmit={handleSubmit}
     >
-      {(formik) => (
-        <Form
-          className={twMerge(
-            "grid grid-cols-1 gap-4 sm:grid-cols-2",
-            className,
-          )}
-        >
-          <div className="flex flex-col gap-1">
-            <div className="flex justify-between">
-              <label htmlFor="name">Name</label>
-              {formik.touched.name && formik.errors.name && (
-                <ErrorMessage
-                  name="name"
-                  render={(msg: any) => (
-                    <label
-                      htmlFor="name"
-                      className="text-red-700 dark:text-red-300"
-                    >
-                      {msg}
-                    </label>
-                  )}
-                />
-              )}
-            </div>
-            <Field
-              name="name"
-              type="text"
-              className="bg-neutral-200 px-4 py-2 dark:bg-neutral-800"
-            />
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <div className="flex justify-between">
-              <label htmlFor="email">Email</label>
-              {formik.touched.email && formik.errors.email && (
-                <ErrorMessage
-                  name="email"
-                  render={(msg: any) => (
-                    <label
-                      htmlFor="email"
-                      className="text-red-700 dark:text-red-300"
-                    >
-                      {msg}
-                    </label>
-                  )}
-                />
-              )}
-            </div>
-            <Field
-              name="email"
-              type="text"
-              className="bg-neutral-200 px-4 py-2 dark:bg-neutral-800"
-            />
-          </div>
-
-          <div className="flex flex-col gap-1 sm:col-span-2">
-            <div className="flex justify-between">
-              <label htmlFor="message">Message</label>
-              {formik.touched.message && formik.errors.message && (
-                <ErrorMessage
-                  name="message"
-                  render={(msg: any) => (
-                    <label
-                      htmlFor="message"
-                      className="text-red-700 dark:text-red-300"
-                    >
-                      {msg}
-                    </label>
-                  )}
-                />
-              )}
-            </div>
-            <Field
-              name="message"
-              as="textarea"
-              className="bg-neutral-200 px-4 py-2 dark:bg-neutral-800"
-            />
-          </div>
-
-          <Button
-            primary
-            type="submit"
-            className="sm:col-span-2 sm:justify-self-end"
+      {submitted ? (
+        <section>
+          Thanks for getting in touch! I'll respond to you as soon as I can.
+        </section>
+      ) : (
+        (formik) => (
+          <Form
+            className={twMerge(
+              "grid grid-cols-1 gap-4 sm:grid-cols-2",
+              className,
+            )}
           >
-            Submit
-          </Button>
-          {error.tripped && <div>{error.message}</div>}
-        </Form>
+            <div className="flex flex-col gap-1">
+              <div className="flex justify-between">
+                <label htmlFor="name">Name</label>
+                {formik.touched.name && formik.errors.name && (
+                  <ErrorMessage
+                    name="name"
+                    render={(msg: any) => (
+                      <label
+                        htmlFor="name"
+                        className="text-red-700 dark:text-red-300"
+                      >
+                        {msg}
+                      </label>
+                    )}
+                  />
+                )}
+              </div>
+              <Field
+                name="name"
+                type="text"
+                className="bg-neutral-200 px-4 py-2 dark:bg-neutral-800"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <div className="flex justify-between">
+                <label htmlFor="email">Email</label>
+                {formik.touched.email && formik.errors.email && (
+                  <ErrorMessage
+                    name="email"
+                    render={(msg: any) => (
+                      <label
+                        htmlFor="email"
+                        className="text-red-700 dark:text-red-300"
+                      >
+                        {msg}
+                      </label>
+                    )}
+                  />
+                )}
+              </div>
+              <Field
+                name="email"
+                type="text"
+                className="bg-neutral-200 px-4 py-2 dark:bg-neutral-800"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1 sm:col-span-2">
+              <div className="flex justify-between">
+                <label htmlFor="message">Message</label>
+                {formik.touched.message && formik.errors.message && (
+                  <ErrorMessage
+                    name="message"
+                    render={(msg: any) => (
+                      <label
+                        htmlFor="message"
+                        className="text-red-700 dark:text-red-300"
+                      >
+                        {msg}
+                      </label>
+                    )}
+                  />
+                )}
+              </div>
+              <Field
+                name="message"
+                as="textarea"
+                className="bg-neutral-200 px-4 py-2 dark:bg-neutral-800"
+              />
+            </div>
+
+            <Button
+              primary
+              type="submit"
+              className="sm:col-span-2 sm:justify-self-end"
+            >
+              Submit
+            </Button>
+            {error.tripped && <div>{error.message}</div>}
+          </Form>
+        )
       )}
     </Formik>
   );
