@@ -4,6 +4,8 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { twMerge } from "tailwind-merge";
 import Button from "./Button";
 import * as Yup from "yup";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { useCallback, useState } from "react";
 
 type ContactFormProps = {
   className?: string;
@@ -15,9 +17,49 @@ type FormValues = {
   message: string;
 };
 
+type FormError = {
+  tripped: boolean;
+  message: string;
+};
+
 function ContactForm({ className }: ContactFormProps) {
-  const handleSubmit = (values: FormValues) => {
-    console.log(values);
+  const { executeRecaptcha } = useGoogleReCaptcha();
+  const [error, setError] = useState<FormError>({
+    tripped: false,
+    message: "",
+  });
+
+  const handleReCaptcha = useCallback(async () => {
+    if (!executeRecaptcha) {
+      console.error("executeRecaptcha not yet available");
+      return -1;
+    }
+
+    const token = await executeRecaptcha("onSubmit");
+
+    try {
+      const verify = await fetch("/api/recaptcha", {
+        method: "POST",
+        body: JSON.stringify({ token }),
+      }).then((res) => res.json());
+
+      return verify.score as number;
+    } catch (e) {
+      if (typeof e === "string") {
+        setError({ tripped: true, message: e });
+      } else if (e instanceof Error) {
+        setError({ tripped: true, message: e.message });
+      }
+      return -1;
+    }
+  }, [executeRecaptcha]);
+
+  const handleSubmit = async (values: FormValues) => {
+    const score = await handleReCaptcha();
+
+    score > 0.5
+      ? console.log(values)
+      : setError({ tripped: true, message: "reCaptcha did not pass." });
   };
 
   return (
@@ -31,7 +73,12 @@ function ContactForm({ className }: ContactFormProps) {
       onSubmit={handleSubmit}
     >
       {(formik) => (
-        <Form className={twMerge("grid grid-cols-1 gap-4 sm:grid-cols-2")}>
+        <Form
+          className={twMerge(
+            "grid grid-cols-1 gap-4 sm:grid-cols-2",
+            className,
+          )}
+        >
           <div className="flex flex-col gap-1">
             <div className="flex justify-between">
               <label htmlFor="name">Name</label>
@@ -111,6 +158,7 @@ function ContactForm({ className }: ContactFormProps) {
           >
             Submit
           </Button>
+          {error.tripped && <div>{error.message}</div>}
         </Form>
       )}
     </Formik>

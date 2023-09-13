@@ -12,9 +12,9 @@ export default async function handler(
       .json({ status: "failure", message: "No reCaptcha keys found" });
   }
 
-  const { recaptchaResponse } = req.body;
+  const { token } = JSON.parse(req.body) as { token: string };
 
-  const url = `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${recaptchaResponse}`;
+  const url = `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${token}`;
 
   try {
     const recaptchaResponse = await fetch(url, { method: "POST" });
