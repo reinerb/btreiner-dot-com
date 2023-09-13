@@ -28,6 +28,7 @@ function ContactForm({ className }: ContactFormProps) {
     tripped: false,
     message: "",
   });
+  const [submitted, setSubmitted] = useState<boolean>(false);
 
   const handleReCaptcha = useCallback(async () => {
     if (!executeRecaptcha) {
@@ -57,9 +58,19 @@ function ContactForm({ className }: ContactFormProps) {
   const handleSubmit = async (values: FormValues) => {
     const score = await handleReCaptcha();
 
-    score > 0.5
-      ? console.log(values)
-      : setError({ tripped: true, message: "reCaptcha did not pass." });
+    if (error.tripped) return;
+
+    if (score <= 0.5) {
+      setError({ tripped: true, message: "reCaptcha did not pass." });
+      return;
+    }
+
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      body: JSON.stringify(values),
+    });
+
+    console.log(await response.json());
   };
 
   return (
