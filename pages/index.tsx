@@ -1,4 +1,5 @@
 import LinkButton from "@/utils/components/LinkButton";
+import Logo from "@/utils/components/Logo";
 import RootLayout from "@/utils/layouts/RootLayout";
 import {
   allMediaQuery,
@@ -38,28 +39,25 @@ export default function Home({ projects }: HomepageProps) {
   return (
     <RootLayout
       title="Ben Reiner | Web Developer"
+      className="flex flex-col gap-4"
       noContainer
       metaDescription="Hi! I'm Ben Reiner, a freelance frontend developer. This is a collection of some cool projects I've made."
     >
-      <section className="bg-primary-200 p-8 dark:bg-primary-900">
-        <div className="container mx-auto flex flex-col items-center gap-2">
-          <h1 className="text-center text-3xl font-bold sm:text-4xl">
-            Hi! I'm Ben Reiner.
-          </h1>
-          <p className="text-center sm:text-lg">I'm a front-end developer.</p>
-        </div>
-      </section>
-      <section className="bg-secondary-200 p-8 dark:bg-secondary-950">
-        <div className="container mx-auto flex flex-col items-center gap-4">
-          <h2 className="text-center text-xl font-semibold sm:text-2xl">
-            Ready to bring your vision to life?
-          </h2>
-          <p className="text-center sm:text-lg">
-            Get in touch and let's build something incredible together.
-          </p>
-          <LinkButton href="/contact">Contact Me</LinkButton>
-        </div>
-      </section>
+      <p>Hi! I'm</p>
+      <h1 className="text-9xl font-bold text-primary-800 dark:text-primary-300">
+        Ben{" "}
+        <Logo className="inline w-36 fill-primary-800 dark:fill-primary-300" />
+        einer
+      </h1>
+      <ul className="flex gap-4 divide-x-2 divide-neutral-700 text-lg text-neutral-800 dark:divide-neutral-300 dark:text-neutral-200">
+        <li>Frontend</li>
+        <li className="pl-4">WordPress</li>
+        <li className="pl-4">React</li>
+      </ul>
+      <p>Let's build something incredible together.</p>
+      <LinkButton href="/contact" className="max-w-fit">
+        Contact Me
+      </LinkButton>
     </RootLayout>
   );
 }
