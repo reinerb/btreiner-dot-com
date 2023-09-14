@@ -4,6 +4,8 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { twMerge } from "tailwind-merge";
 import Button from "./Button";
 import * as Yup from "yup";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { useState } from "react";
 
 type ContactFormProps = {
   className?: string;
@@ -15,9 +17,51 @@ type FormValues = {
   message: string;
 };
 
+type FormError = {
+  tripped: boolean;
+  message: string;
+};
+
 function ContactForm({ className }: ContactFormProps) {
-  const handleSubmit = (values: FormValues) => {
-    console.log(values);
+  const { executeRecaptcha } = useGoogleReCaptcha();
+  const [error, setError] = useState<FormError>({
+    tripped: false,
+    message: "",
+  });
+  const [submitted, setSubmitted] = useState<boolean>(false);
+
+  const handleSubmit = async (values: FormValues) => {
+    // If executeRecaptcha doesn't work, fail.
+    if (!executeRecaptcha) {
+      setError({ tripped: true, message: "reCaptcha not initialized" });
+      return;
+    }
+
+    // Get reCaptcha token
+    const token = await executeRecaptcha("onSubmit");
+
+    // Bundle form values and reCaptcha token
+    const submission = { formValues: values, token };
+
+    // Submit data
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: JSON.stringify(submission),
+      }).then((res) => res.json());
+      console.log(response);
+      if (response.success) {
+        setSubmitted(true);
+      } else {
+        setError({ tripped: true, message: response.message });
+      }
+    } catch (e) {
+      if (typeof e === "string") {
+        setError({ tripped: true, message: e });
+      } else if (e instanceof Error) {
+        setError({ tripped: true, message: e.message });
+      }
+    }
   };
 
   return (
@@ -30,88 +74,102 @@ function ContactForm({ className }: ContactFormProps) {
       })}
       onSubmit={handleSubmit}
     >
-      {(formik) => (
-        <Form className={twMerge("grid grid-cols-1 gap-4 sm:grid-cols-2")}>
-          <div className="flex flex-col gap-1">
-            <div className="flex justify-between">
-              <label htmlFor="name">Name</label>
-              {formik.touched.name && formik.errors.name && (
-                <ErrorMessage
+      {submitted ? (
+        <p className="mx-auto w-fit bg-neutral-200 px-8 py-4 text-center font-bold dark:bg-neutral-800">
+          Thanks for getting in touch! I'll respond to you as soon as I can.
+        </p>
+      ) : (
+        (formik) => (
+          <>
+            <Form
+              className={twMerge(
+                "grid grid-cols-1 gap-4 sm:grid-cols-2",
+                className,
+              )}
+            >
+              <div className="flex flex-col gap-1">
+                <div className="flex justify-between">
+                  <label htmlFor="name">Name</label>
+                  {formik.touched.name && formik.errors.name && (
+                    <ErrorMessage
+                      name="name"
+                      render={(msg: any) => (
+                        <label
+                          htmlFor="name"
+                          className="font-semibold text-red-700 dark:text-red-300"
+                        >
+                          {msg}
+                        </label>
+                      )}
+                    />
+                  )}
+                </div>
+                <Field
                   name="name"
-                  render={(msg: any) => (
-                    <label
-                      htmlFor="name"
-                      className="text-red-700 dark:text-red-300"
-                    >
-                      {msg}
-                    </label>
-                  )}
+                  type="text"
+                  className="bg-neutral-200 px-4 py-2 outline-none focus-within:bg-neutral-300 dark:bg-neutral-800 dark:focus-within:bg-neutral-900"
                 />
-              )}
-            </div>
-            <Field
-              name="name"
-              type="text"
-              className="bg-neutral-200 px-4 py-2 dark:bg-neutral-800"
-            />
-          </div>
+              </div>
 
-          <div className="flex flex-col gap-1">
-            <div className="flex justify-between">
-              <label htmlFor="email">Email</label>
-              {formik.touched.email && formik.errors.email && (
-                <ErrorMessage
+              <div className="flex flex-col gap-1">
+                <div className="flex justify-between">
+                  <label htmlFor="email">Email</label>
+                  {formik.touched.email && formik.errors.email && (
+                    <ErrorMessage
+                      name="email"
+                      render={(msg: any) => (
+                        <label
+                          htmlFor="email"
+                          className="font-semibold text-red-700 dark:text-red-300"
+                        >
+                          {msg}
+                        </label>
+                      )}
+                    />
+                  )}
+                </div>
+                <Field
                   name="email"
-                  render={(msg: any) => (
-                    <label
-                      htmlFor="email"
-                      className="text-red-700 dark:text-red-300"
-                    >
-                      {msg}
-                    </label>
-                  )}
+                  type="text"
+                  className="bg-neutral-200 px-4 py-2 outline-none focus-within:bg-neutral-300 dark:bg-neutral-800 dark:focus-within:bg-neutral-900"
                 />
-              )}
-            </div>
-            <Field
-              name="email"
-              type="text"
-              className="bg-neutral-200 px-4 py-2 dark:bg-neutral-800"
-            />
-          </div>
+              </div>
 
-          <div className="flex flex-col gap-1 sm:col-span-2">
-            <div className="flex justify-between">
-              <label htmlFor="message">Message</label>
-              {formik.touched.message && formik.errors.message && (
-                <ErrorMessage
+              <div className="flex flex-col gap-1 sm:col-span-2">
+                <div className="flex justify-between">
+                  <label htmlFor="message">Message</label>
+                  {formik.touched.message && formik.errors.message && (
+                    <ErrorMessage
+                      name="message"
+                      render={(msg: any) => (
+                        <label
+                          htmlFor="message"
+                          className="font-semibold text-red-700 dark:text-red-300"
+                        >
+                          {msg}
+                        </label>
+                      )}
+                    />
+                  )}
+                </div>
+                <Field
                   name="message"
-                  render={(msg: any) => (
-                    <label
-                      htmlFor="message"
-                      className="text-red-700 dark:text-red-300"
-                    >
-                      {msg}
-                    </label>
-                  )}
+                  as="textarea"
+                  className="bg-neutral-200 px-4 py-2 outline-none focus-within:bg-neutral-300 dark:bg-neutral-800 dark:focus-within:bg-neutral-900"
                 />
-              )}
-            </div>
-            <Field
-              name="message"
-              as="textarea"
-              className="bg-neutral-200 px-4 py-2 dark:bg-neutral-800"
-            />
-          </div>
+              </div>
 
-          <Button
-            primary
-            type="submit"
-            className="sm:col-span-2 sm:justify-self-end"
-          >
-            Submit
-          </Button>
-        </Form>
+              <Button
+                primary
+                type="submit"
+                className="sm:col-span-2 sm:justify-self-end"
+              >
+                Submit
+              </Button>
+              {error.tripped && <div>{error.message}</div>}
+            </Form>
+          </>
+        )
       )}
     </Formik>
   );
