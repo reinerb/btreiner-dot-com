@@ -16,6 +16,10 @@ const config: Config = {
       },
       gridTemplateRows: {
         "root-layout": "auto 1fr auto",
+        root: "1fr auto",
+      },
+      gridTemplateColumns: {
+        root: "auto 1fr",
       },
       colors: {
         primary: {

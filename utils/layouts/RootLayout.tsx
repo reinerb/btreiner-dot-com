@@ -32,13 +32,13 @@ function RootLayout({
         <meta name="description" content={metaDescription} />
       </Head>
       <div
-        className={`grid min-h-screen grid-rows-root-layout ${inter.className} ${saira.variable}`}
+        className={`grid-rows-root grid-cols-root grid min-h-screen ${inter.className} ${saira.variable}`}
       >
         <Header />
         {noContainer ? (
-          <main className={className}>{children}</main>
+          <main className={twMerge("row-span-2", className)}>{children}</main>
         ) : (
-          <div className="flex justify-center">
+          <div className="row-span-2 flex justify-center">
             <main className={twMerge("container m-4", className)}>
               {children}
             </main>
