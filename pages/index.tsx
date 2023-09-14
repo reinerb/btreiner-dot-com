@@ -7,7 +7,6 @@ import {
 } from "@/utils/queries/wpQueryHandler";
 import { Project } from "@/utils/types/WordPressQueries";
 import { GetStaticProps } from "next";
-import Link from "next/link";
 
 type HomepageProps = {
   projects: Project[];
@@ -39,14 +38,27 @@ export default function Home({ projects }: HomepageProps) {
   return (
     <RootLayout
       title="Ben Reiner | Web Developer"
+      noContainer
       metaDescription="Hi! I'm Ben Reiner, a freelance frontend developer. This is a collection of some cool projects I've made."
     >
-      <section className="container flex flex-col items-center gap-2 bg-secondary-900 p-8">
-        <h1 className="text-center text-4xl font-bold">Hi! I'm Ben Reiner.</h1>
-        <p className="text-center text-lg">
-          I'm a front-end developer building websites with WordPress and React.
-        </p>
-        <LinkButton href="/about">Learn About Me</LinkButton>
+      <section className="bg-primary-200 p-8 dark:bg-primary-900">
+        <div className="container mx-auto flex flex-col items-center gap-2">
+          <h1 className="text-center text-3xl font-bold sm:text-4xl">
+            Hi! I'm Ben Reiner.
+          </h1>
+          <p className="text-center sm:text-lg">I'm a front-end developer.</p>
+        </div>
+      </section>
+      <section className="bg-secondary-200 p-8 dark:bg-secondary-950">
+        <div className="container mx-auto flex flex-col items-center gap-4">
+          <h2 className="text-center text-xl font-semibold sm:text-2xl">
+            Ready to bring your vision to life?
+          </h2>
+          <p className="text-center sm:text-lg">
+            Get in touch and let's build something incredible together.
+          </p>
+          <LinkButton href="/contact">Contact Me</LinkButton>
+        </div>
       </section>
     </RootLayout>
   );
