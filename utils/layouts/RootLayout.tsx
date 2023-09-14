@@ -3,6 +3,9 @@ import React from "react";
 import Header from "../components/RootLayout/Header";
 import Footer from "../components/RootLayout/Footer";
 import { twMerge } from "tailwind-merge";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 type RootLayoutProps = {
   title: string;
@@ -23,7 +26,9 @@ function RootLayout({
         <title>{title}</title>
         <meta name="description" content={metaDescription} />
       </Head>
-      <div className="grid min-h-screen grid-rows-root-layout">
+      <div
+        className={`grid min-h-screen grid-rows-root-layout ${inter.className}`}
+      >
         <Header />
         <div className="flex justify-center">
           <main className={twMerge("container m-4", className)}>
