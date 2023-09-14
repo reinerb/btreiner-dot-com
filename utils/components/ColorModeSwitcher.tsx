@@ -20,7 +20,7 @@ function ColorModeSwitcher({ className }: ColorModeSwitcherProps) {
   return (
     <button
       className={twMerge(
-        "cursor-pointer text-xl text-neutral-950 transition-colors duration-200 hover:text-neutral-800 active:text-neutral-700 dark:text-neutral-50 dark:hover:text-neutral-200 dark:active:text-neutral-300",
+        "cursor-pointer text-xl text-slate-950 transition-colors duration-200 hover:text-slate-800 active:text-slate-700 dark:text-slate-50 dark:hover:text-slate-200 dark:active:text-slate-300",
         className,
       )}
       onClick={toggleTheme}

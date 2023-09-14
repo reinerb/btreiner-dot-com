@@ -14,7 +14,7 @@ function ProjectCard({ project, className }: PortfolioCardProps) {
   return (
     <Link
       href={`/portfolio/${project.slug}`}
-      className={twMerge("aspect-w-16 aspect-h-9 group relative", className)}
+      className={twMerge("group aspect-h-9 aspect-w-16 relative", className)}
     >
       <Image
         loader={() => project.featuredMedia.src}
@@ -28,8 +28,8 @@ function ProjectCard({ project, className }: PortfolioCardProps) {
       <div
         className={twMerge(
           "absolute left-0 top-0 flex h-full w-full flex-col items-center justify-center gap-2 p-4 text-center",
-          "bg-neutral-950 bg-opacity-80 text-neutral-50  bg-blend-overlay outline-1 outline-secondary-50 transition-opacity duration-300",
-          "anyhover:group-hover:opacity-100 anyhover:opacity-0 anyhover:group-focus-within:opacity-100",
+          "bg-slate-900 bg-opacity-80 text-slate-50  bg-blend-overlay outline-1 outline-secondary-50 transition-opacity duration-300",
+          "anyhover:opacity-0 anyhover:group-focus-within:opacity-100 anyhover:group-hover:opacity-100",
         )}
       >
         <h2 className="text-xl font-semibold">{project.title}</h2>

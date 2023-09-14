@@ -75,7 +75,7 @@ function ContactForm({ className }: ContactFormProps) {
       onSubmit={handleSubmit}
     >
       {submitted ? (
-        <p className="mx-auto w-fit bg-neutral-200 px-8 py-4 text-center font-bold dark:bg-neutral-800">
+        <p className="mx-auto w-fit bg-slate-200 px-8 py-4 text-center font-bold dark:bg-slate-800">
           Thanks for getting in touch! I'll respond to you as soon as I can.
         </p>
       ) : (
@@ -107,7 +107,7 @@ function ContactForm({ className }: ContactFormProps) {
                 <Field
                   name="name"
                   type="text"
-                  className="bg-neutral-200 px-4 py-2 outline-none focus-within:bg-neutral-300 dark:bg-neutral-800 dark:focus-within:bg-neutral-900"
+                  className="bg-slate-200 px-4 py-2 outline-none focus-within:bg-slate-300 dark:bg-slate-800 dark:focus-within:bg-slate-900"
                 />
               </div>
 
@@ -131,7 +131,7 @@ function ContactForm({ className }: ContactFormProps) {
                 <Field
                   name="email"
                   type="text"
-                  className="bg-neutral-200 px-4 py-2 outline-none focus-within:bg-neutral-300 dark:bg-neutral-800 dark:focus-within:bg-neutral-900"
+                  className="bg-slate-200 px-4 py-2 outline-none focus-within:bg-slate-300 dark:bg-slate-800 dark:focus-within:bg-slate-900"
                 />
               </div>
 
@@ -155,7 +155,7 @@ function ContactForm({ className }: ContactFormProps) {
                 <Field
                   name="message"
                   as="textarea"
-                  className="bg-neutral-200 px-4 py-2 outline-none focus-within:bg-neutral-300 dark:bg-neutral-800 dark:focus-within:bg-neutral-900"
+                  className="bg-slate-200 px-4 py-2 outline-none focus-within:bg-slate-300 dark:bg-slate-800 dark:focus-within:bg-slate-900"
                 />
               </div>
 
