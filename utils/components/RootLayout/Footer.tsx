@@ -3,14 +3,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { twMerge } from "tailwind-merge";
 
 const ColorModeSwitcher = dynamic(() => import("../ColorModeSwitcher"), {
   ssr: false,
 });
 
-function Footer() {
+type FooterProps = {
+  className?: string;
+};
+
+function Footer({ className }: FooterProps) {
   return (
-    <footer className="flex flex-col items-center justify-center gap-2 px-4 py-2 sm:flex-row sm:gap-4">
+    <footer
+      className={twMerge(
+        "flex flex-col items-center justify-center gap-2 px-4 py-2 sm:flex-row sm:gap-4",
+        className,
+      )}
+    >
       <div className="flex items-center gap-4">
         <Link
           href="https://github.com/reinerb"
