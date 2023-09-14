@@ -5,7 +5,7 @@ import {
   singleMediaQuery,
   toolQuery,
 } from "@/utils/queries/wpQueryHandler";
-import RootLayout from "@/utils/layouts/RootLayout";
+import RootLayout from "@/utils/components/RootLayout/RootLayout";
 import Image from "next/image";
 import LinkButton from "@/utils/components/LinkButton";
 import type { Project, Tool } from "@/utils/types/WordPressQueries";
@@ -63,7 +63,7 @@ function ProjectPage({
   acf,
 }: ProjectPageProps) {
   return (
-    <RootLayout title={`${title} | Ben Reiner`}>
+    <RootLayout title={`${title} | Ben Reiner`} activeNav="portfolio">
       <div className="grid gap-8 xl:grid-cols-2">
         <div className="order-2 xl:order-1">
           {featuredMedia && (

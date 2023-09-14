@@ -1,4 +1,4 @@
-import RootLayout from "@/utils/layouts/RootLayout";
+import RootLayout from "@/utils/components/RootLayout/RootLayout";
 import React from "react";
 import benAndLibby from "@/assets/ben-and-libby.jpg";
 import Image from "next/image";
@@ -9,6 +9,7 @@ function About() {
     <RootLayout
       title="About | Ben Reiner"
       metaDescription="Hi! I'm Ben Reiner, a freelance frontend developer. Come learn more about me!"
+      activeNav="about"
       className="grid gap-4 md:grid-cols-3 xl:grid-cols-4 xl:gap-8"
     >
       <Image

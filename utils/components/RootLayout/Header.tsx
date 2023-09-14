@@ -5,10 +5,11 @@ import Link from "next/link";
 import Logo from "../Logo";
 
 type HeaderProps = {
+  activeNav: "home" | "portfolio" | "about" | "contact";
   className?: string;
 };
 
-function Header({ className }: HeaderProps) {
+function Header({ className, activeNav }: HeaderProps) {
   return (
     <header
       className={twMerge(
@@ -19,7 +20,7 @@ function Header({ className }: HeaderProps) {
       <Link href="/" aria-label="Home" className="flex flex-col items-center">
         <Logo className="w-12 fill-slate-950 transition-colors duration-200 hover:fill-slate-800 active:fill-slate-700 dark:fill-slate-50 dark:hover:fill-slate-200 dark:active:fill-slate-300 sm:w-16 lg:w-20" />
       </Link>
-      <RootNav />
+      <RootNav activeNav={activeNav} />
     </header>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import RootLayout from "@/utils/layouts/RootLayout";
+import RootLayout from "@/utils/components/RootLayout/RootLayout";
 import { GetStaticProps } from "next";
 import {
   allMediaQuery,
@@ -42,6 +42,7 @@ function PortfolioPage({ projects }: PortfolioPageProps) {
     <RootLayout
       title="Portfolio | Ben Reiner"
       metaDescription="Hi! I'm Ben Reiner, a freelance frontend developer. This is a collection of some cool projects I've made."
+      activeNav="portfolio"
     >
       <h1 className="mb-4 text-2xl font-bold">My Portfolio</h1>
       <ProjectGrid>

@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from "react";
-import Header from "../components/RootLayout/Header";
-import Footer from "../components/RootLayout/Footer";
+import Header from "./Header";
+import Footer from "./Footer";
 import { twMerge } from "tailwind-merge";
 import { Inter, Saira } from "next/font/google";
 
@@ -12,9 +12,8 @@ type RootLayoutProps = {
   title: string;
   metaDescription?: string;
   children: React.ReactNode;
-  noContainer?: boolean;
-  noHeader?: boolean;
-  noFooter?: boolean;
+  activeNav: "home" | "portfolio" | "about" | "contact";
+
   className?: string;
 };
 
@@ -22,7 +21,8 @@ function RootLayout({
   title,
   metaDescription,
   children,
-  noContainer,
+
+  activeNav,
   className,
 }: RootLayoutProps) {
   return (
@@ -32,18 +32,17 @@ function RootLayout({
         <meta name="description" content={metaDescription} />
       </Head>
       <div
-        className={`grid-rows-root grid-cols-root grid min-h-screen ${inter.className} ${saira.variable}`}
+        className={`grid-rows-root grid-cols-root grid h-screen ${inter.className} ${saira.variable}`}
       >
-        <Header />
-        {noContainer ? (
-          <main className={twMerge("row-span-2", className)}>{children}</main>
-        ) : (
-          <div className="row-span-2 flex justify-center">
-            <main className={twMerge("container m-4", className)}>
-              {children}
-            </main>
-          </div>
-        )}
+        <Header activeNav={activeNav} />
+        <main
+          className={twMerge(
+            "row-span-2 h-screen overflow-y-auto p-4",
+            className,
+          )}
+        >
+          {children}
+        </main>
         <Footer />
       </div>
     </>
