@@ -8,6 +8,9 @@ const config: Config = {
   darkMode: ["class"],
   theme: {
     extend: {
+      fontFamily: {
+        heading: "var(--font-saira)",
+      },
       screens: {
         anyhover: { raw: "(any-hover: hover)" },
       },

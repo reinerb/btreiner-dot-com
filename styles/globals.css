@@ -6,6 +6,15 @@
   body {
     @apply bg-slate-50 text-slate-950 dark:bg-slate-950 dark:text-slate-50;
   }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
 }
 
 @layer components {

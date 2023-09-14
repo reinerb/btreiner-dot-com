@@ -3,9 +3,10 @@ import React from "react";
 import Header from "../components/RootLayout/Header";
 import Footer from "../components/RootLayout/Footer";
 import { twMerge } from "tailwind-merge";
-import { Inter } from "next/font/google";
+import { Inter, Saira } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
+const saira = Saira({ subsets: ["latin"], variable: "--font-saira" });
 
 type RootLayoutProps = {
   title: string;
@@ -27,7 +28,7 @@ function RootLayout({
         <meta name="description" content={metaDescription} />
       </Head>
       <div
-        className={`grid min-h-screen grid-rows-root-layout ${inter.className}`}
+        className={`grid min-h-screen grid-rows-root-layout ${inter.className} ${saira.variable}`}
       >
         <Header />
         <div className="flex justify-center">
