@@ -12,6 +12,9 @@ type RootLayoutProps = {
   title: string;
   metaDescription?: string;
   children: React.ReactNode;
+  noContainer?: boolean;
+  noHeader?: boolean;
+  noFooter?: boolean;
   className?: string;
 };
 
@@ -19,6 +22,7 @@ function RootLayout({
   title,
   metaDescription,
   children,
+  noContainer,
   className,
 }: RootLayoutProps) {
   return (
@@ -31,11 +35,15 @@ function RootLayout({
         className={`grid min-h-screen grid-rows-root-layout ${inter.className} ${saira.variable}`}
       >
         <Header />
-        <div className="flex justify-center">
-          <main className={twMerge("container m-4", className)}>
-            {children}
-          </main>
-        </div>
+        {noContainer ? (
+          <main className={className}>{children}</main>
+        ) : (
+          <div className="flex justify-center">
+            <main className={twMerge("container m-4", className)}>
+              {children}
+            </main>
+          </div>
+        )}
         <Footer />
       </div>
     </>
