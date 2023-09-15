@@ -160,7 +160,7 @@ function ContactForm({ className }: ContactFormProps) {
                 <Field
                   name="message"
                   as="textarea"
-                  className="bg-slate-200 px-4 py-2 outline-none focus-within:bg-slate-300 dark:bg-slate-800 dark:focus-within:bg-slate-900"
+                  className="h-36 bg-slate-200 px-4 py-2 outline-none focus-within:bg-slate-300 dark:bg-slate-800 dark:focus-within:bg-slate-900"
                 />
               </div>
 

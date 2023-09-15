@@ -11,7 +11,7 @@ function Contact() {
       <RootLayout
         title="Contact | Ben Reiner"
         metaDescription="Need a frontend developer to help bring your vision to life? Send me a message!"
-        className="grid place-items-center gap-4"
+        className="grid place-items-center gap-4 md:overflow-y-hidden"
         activeNav={"contact"}
       >
         <div className="container mx-auto grid h-screen grid-rows-3 items-center gap-4 text-center">
@@ -22,7 +22,7 @@ function Contact() {
               make something incredible together.
             </p>
           </section>
-          <ContactForm className="row-span-2 self-start" />
+          <ContactForm className="row-span-2 mx-auto max-w-screen-lg self-start" />
         </div>
       </RootLayout>
     </GoogleReCaptchaProvider>
