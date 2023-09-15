@@ -22,7 +22,7 @@ export default function Document() {
           href="/favicon/favicon-16x16.png"
         />
       </Head>
-      <body>
+      <body className="overflow-x-hidden">
         <Main />
         <NextScript />
       </body>
