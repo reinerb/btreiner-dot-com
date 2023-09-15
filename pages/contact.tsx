@@ -14,7 +14,7 @@ function Contact() {
         className="grid place-items-center gap-4 md:overflow-y-hidden"
         activeNav={"contact"}
       >
-        <div className="container mx-auto grid h-screen grid-rows-3 items-center gap-4 text-center">
+        <div className="container mx-auto grid items-center gap-4 text-center md:h-screen md:grid-rows-3">
           <section className="self-end">
             <h1 className="text-2xl font-bold">Contact Me</h1>
             <p className="font-semibold">
@@ -22,7 +22,7 @@ function Contact() {
               make something incredible together.
             </p>
           </section>
-          <ContactForm className="row-span-2 mx-auto max-w-screen-lg self-start" />
+          <ContactForm className="mx-auto max-w-screen-lg self-start md:row-span-2" />
         </div>
       </RootLayout>
     </GoogleReCaptchaProvider>
