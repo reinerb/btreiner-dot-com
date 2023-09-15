@@ -12,14 +12,14 @@ function About() {
       activeNav="about"
       className="grid place-items-center"
     >
-      <div className="container grid gap-4 md:grid-cols-3 xl:grid-cols-4 xl:gap-8">
+      <div className="grid gap-4 md:grid-cols-3 xl:grid-cols-4 xl:gap-8 2xl:grid-cols-5">
         <Image
           layout="responsive"
           src={benAndLibby}
           alt="A picture of Ben"
           className="order-2 justify-self-center md:order-1"
         />
-        <article className="order-1 flex flex-col gap-4 md:order-2 md:col-span-2 xl:col-span-3">
+        <article className="order-1 flex flex-col gap-4 md:order-2 md:col-span-2 xl:col-span-3 2xl:col-span-4">
           <h1 className="text-2xl font-bold">About Me</h1>
           <p>
             Hi! My name is Ben Reiner, and I'm a freelance frontend developer.
