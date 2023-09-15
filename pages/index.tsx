@@ -1,41 +1,8 @@
 import LinkButton from "@/utils/components/LinkButton";
 import Logo from "@/utils/components/Logo";
 import RootLayout from "@/utils/components/RootLayout/RootLayout";
-import {
-  allMediaQuery,
-  projectsQuery,
-  toolQuery,
-} from "@/utils/queries/wpQueryHandler";
-import { Project } from "@/utils/types/WordPressQueries";
-import { GetStaticProps } from "next";
 
-type HomepageProps = {
-  projects: Project[];
-};
-
-export const getStaticProps: GetStaticProps<HomepageProps> = async () => {
-  const projectsData = await projectsQuery({
-    fields: ["tools", "excerpt", "featured_media"],
-  });
-  const allTools = await toolQuery();
-  const allMedia = await allMediaQuery();
-
-  const projects = projectsData.map(({ featured_media, tools, ...project }) => {
-    const projectTools = allTools.filter((tool) => tools.includes(tool.id));
-    const projectMedia = allMedia.filter(
-      (media) => media.id === featured_media,
-    )[0];
-
-    return {
-      ...project,
-      tools: projectTools,
-      featuredMedia: projectMedia,
-    };
-  });
-
-  return { props: { projects } };
-};
-export default function Home({ projects }: HomepageProps) {
+export default function Home() {
   return (
     <RootLayout
       title="Ben Reiner | Web Developer"
