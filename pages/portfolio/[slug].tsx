@@ -63,7 +63,11 @@ function ProjectPage({
   acf,
 }: ProjectPageProps) {
   return (
-    <RootLayout title={`${title} | Ben Reiner`} activeNav="portfolio">
+    <RootLayout
+      title={`${title} | Ben Reiner`}
+      activeNav="portfolio"
+      className="flex items-center"
+    >
       <div className="grid gap-8 xl:grid-cols-2">
         <div className="order-2 xl:order-1">
           {featuredMedia && (
