@@ -1,8 +1,12 @@
 import React from "react";
-import RootNav from "./RootNav";
+import dynamic from "next/dynamic";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
 import Logo from "../Logo";
+
+const RootNav = dynamic(() => import("./RootNav"), {
+  ssr: false,
+});
 
 type HeaderProps = {
   activeNav: "home" | "portfolio" | "about" | "contact";
