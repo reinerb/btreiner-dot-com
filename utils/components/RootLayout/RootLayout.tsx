@@ -32,18 +32,21 @@ function RootLayout({
         <meta name="description" content={metaDescription} />
       </Head>
       <div
-        className={`grid-rows-root grid-cols-root grid h-screen ${inter.className} ${saira.variable}`}
+        className={`grid-rows-root-mobile md:grid-rows-root-desktop md:grid-cols-root grid h-screen ${inter.className} ${saira.variable}`}
       >
-        <Header activeNav={activeNav} />
+        <Header
+          activeNav={activeNav}
+          className="bg-slate-200 dark:bg-slate-800"
+        />
         <main
           className={twMerge(
-            "row-span-2 h-screen overflow-y-auto p-4",
+            "m-4 md:row-span-2 md:m-0 md:h-screen md:overflow-y-auto md:p-4",
             className,
           )}
         >
           {children}
         </main>
-        <Footer />
+        <Footer className="bg-slate-200 dark:bg-slate-800" />
       </div>
     </>
   );

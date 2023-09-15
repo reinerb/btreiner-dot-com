@@ -15,8 +15,8 @@ const config: Config = {
         anyhover: { raw: "(any-hover: hover)" },
       },
       gridTemplateRows: {
-        "root-layout": "auto 1fr auto",
-        root: "1fr auto",
+        "root-mobile": "auto 1fr auto",
+        "root-desktop": "1fr auto",
       },
       gridTemplateColumns: {
         root: "auto 1fr",
