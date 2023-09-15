@@ -86,7 +86,7 @@ function ProjectPage({
           </LinkButton>
         </div>
         <article className="order-1 flex flex-col gap-4 xl:order-2">
-          <h1 className="text-2xl font-bold">{title}</h1>
+          <h1 className="text-4xl font-bold">{title}</h1>
           {content && (
             <section
               className="flex flex-col gap-1"

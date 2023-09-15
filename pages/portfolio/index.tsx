@@ -44,7 +44,10 @@ function PortfolioPage({ projects }: PortfolioPageProps) {
       metaDescription="Hi! I'm Ben Reiner, a freelance frontend developer. This is a collection of some cool projects I've made."
       activeNav="portfolio"
     >
-      <h1 className="mb-4 text-2xl font-bold">My Portfolio</h1>
+      <section className="mb-4">
+        <h1 className="mb-1 text-4xl font-bold">My Portfolio</h1>
+        <p>Here are some of my favorite projects I've worked on.</p>
+      </section>
       <ProjectGrid>
         {projects.map((project) => (
           <ProjectCard key={project.id} project={project} />
