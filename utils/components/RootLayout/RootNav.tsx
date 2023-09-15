@@ -62,7 +62,7 @@ function RootNav({ activeNav, className }: RootNavProps) {
       <div
         aria-hidden
         className={twMerge(
-          "fixed left-0 top-0 z-40 h-screen w-screen bg-slate-900 bg-opacity-40 transition-opacity duration-300",
+          "fixed left-0 top-0 z-40 h-screen w-screen bg-slate-950 bg-opacity-50 transition-opacity duration-300",
           active ? "opacity-100" : "pointer-events-none opacity-0",
         )}
         onClick={() => setActive(false)}
