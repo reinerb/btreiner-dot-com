@@ -14,7 +14,9 @@ export default function Home() {
       className="grid place-items-center"
     >
       <div className="container flex flex-col items-center gap-8">
-        <p className={`font-bold sm:text-lg md:text-xl ${anybody.className}`}>
+        <p
+          className={`font-bold sm:text-lg md:text-xl lg:text-2xl xl:text-3xl ${anybody.className}`}
+        >
           Hi! I'm
         </p>
         <h1
@@ -25,10 +27,10 @@ export default function Home() {
           <Logo className="inline w-16 fill-primary-800 dark:fill-primary-300 sm:w-24 md:w-28 xl:w-32" />
           einer
         </h1>
-        <ul className="flex gap-4 divide-x-2 divide-slate-500 text-slate-700 dark:text-slate-300 sm:text-lg">
-          <li>Frontend</li>
-          <li className="pl-4">React</li>
-          <li className="pl-4">WordPress</li>
+        <ul className="flex divide-x-2 divide-slate-500 text-slate-700 dark:text-slate-300 sm:text-lg">
+          <li className="px-4">Frontend</li>
+          <li className="px-4">React</li>
+          <li className="px-4">WordPress</li>
         </ul>
         <div className="flex max-w-fit flex-col items-center gap-4 bg-primary-800 p-4 text-center text-slate-50 dark:bg-primary-300 dark:text-slate-950">
           <p className="font-heading font-semibold sm:text-lg">
