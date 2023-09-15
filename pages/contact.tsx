@@ -16,10 +16,10 @@ function Contact() {
       >
         <div className="container mx-auto grid items-center gap-4 text-center md:h-screen md:grid-rows-3">
           <section className="self-end">
-            <h1 className="text-4xl font-bold">Contact Me</h1>
-            <p className="font-semibold">
-              Ready to bring your vision to life? Send me a message and let's
-              make something incredible together.
+            <h1 className="mb-2 text-4xl font-bold">Contact Me</h1>
+            <p className="text-lg font-semibold">
+              Ready to bring your vision to life? Get in touch and we'll create
+              something extraordinary.
             </p>
           </section>
           <ContactForm className="mx-auto max-w-screen-lg self-start md:row-span-2" />
