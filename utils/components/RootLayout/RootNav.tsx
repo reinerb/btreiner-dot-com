@@ -69,7 +69,7 @@ function RootNav({ activeNav, className }: RootNavProps) {
       />
       <div
         className={twMerge(
-          "fixed right-0 top-0 z-50 flex h-screen flex-col items-center bg-slate-800 p-8 transition-transform duration-300",
+          "fixed right-0 top-0 z-50 flex h-screen flex-col items-center bg-slate-200 p-8 transition-transform duration-300 dark:bg-slate-800",
           active ? "translate-x-0" : "translate-x-full",
         )}
       >
