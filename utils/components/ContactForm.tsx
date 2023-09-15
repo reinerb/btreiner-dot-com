@@ -75,7 +75,12 @@ function ContactForm({ className }: ContactFormProps) {
       onSubmit={handleSubmit}
     >
       {submitted ? (
-        <p className="mx-auto w-fit bg-slate-200 px-8 py-4 text-center font-bold dark:bg-slate-800">
+        <p
+          className={twMerge(
+            "mx-auto w-fit bg-slate-200 px-8 py-4 text-center font-bold dark:bg-slate-800",
+            className,
+          )}
+        >
           Thanks for getting in touch! I'll respond to you as soon as I can.
         </p>
       ) : (
@@ -83,7 +88,7 @@ function ContactForm({ className }: ContactFormProps) {
           <>
             <Form
               className={twMerge(
-                "grid grid-cols-1 gap-4 sm:grid-cols-2",
+                "grid w-full grid-cols-1 gap-4 sm:grid-cols-2",
                 className,
               )}
             >
