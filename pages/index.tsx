@@ -1,6 +1,9 @@
 import LinkButton from "@/utils/components/LinkButton";
 import Logo from "@/utils/components/Logo";
 import RootLayout from "@/utils/components/RootLayout/RootLayout";
+import { Anybody } from "next/font/google";
+
+const anybody = Anybody({ subsets: ["latin"] });
 
 export default function Home() {
   return (
@@ -11,8 +14,13 @@ export default function Home() {
       className="grid place-items-center"
     >
       <div className="container flex flex-col items-center gap-8">
-        <p className="font-bold sm:text-lg md:text-xl">Hi! I'm</p>
-        <h1 className="text-5xl font-bold text-primary-800 dark:text-primary-300 sm:text-7xl md:text-8xl xl:text-9xl">
+        <p className={`font-bold sm:text-lg md:text-xl ${anybody.className}`}>
+          Hi! I'm
+        </p>
+        <h1
+          className={`text-4xl font-bold text-primary-800 dark:text-primary-300 sm:text-7xl lg:text-8xl xl:text-9xl ${anybody.className}`}
+          aria-label="Ben Reiner"
+        >
           Ben{" "}
           <Logo className="inline w-16 fill-primary-800 dark:fill-primary-300 sm:w-24 md:w-28 xl:w-32" />
           einer
