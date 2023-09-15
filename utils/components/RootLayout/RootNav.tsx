@@ -52,7 +52,7 @@ function RootNav({ activeNav, className }: RootNavProps) {
     </nav>
   );
 
-  return width && width > 768 ? (
+  return width && width >= 768 ? (
     nav
   ) : (
     <>
