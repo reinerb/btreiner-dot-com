@@ -32,7 +32,7 @@ const navItems = [
 ];
 
 function RootNav({ activeNav, className }: RootNavProps) {
-  const { width, height } = useWindowSize();
+  const { width } = useWindowSize();
   const [active, setActive] = useState<boolean>(false);
 
   const nav = (
