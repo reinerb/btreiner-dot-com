@@ -1,7 +1,7 @@
 import LinkButton from "@/utils/components/LinkButton";
 import Logo from "@/utils/components/Logo";
 import RootLayout from "@/utils/components/RootLayout/RootLayout";
-import TextScroller from "@/utils/components/TextScroller";
+import ScrollingText from "@/utils/components/ScrollingText";
 import { Anybody } from "next/font/google";
 
 const anybody = Anybody({ subsets: ["latin"] });
@@ -46,7 +46,7 @@ export default function Home() {
           <li className="px-4">React</li>
           <li className="px-4">WordPress</li>
         </ul> */}
-        <TextScroller elements={skills} />
+        <ScrollingText elements={skills} />
         <div className="flex max-w-fit flex-col items-center gap-4 bg-primary-800 p-4 text-center text-slate-50 dark:bg-primary-300 dark:text-slate-950">
           <p className="font-heading font-semibold sm:text-lg">
             Let's build something incredible together.

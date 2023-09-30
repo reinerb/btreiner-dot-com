@@ -1,19 +1,19 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
 
-type TextScrollerProps = {
+type ScrollingTextProps = {
   elements: string[];
   reverse?: boolean;
   fast?: boolean;
   className?: string;
 };
 
-function TextScroller({
+function ScrollingText({
   elements,
   reverse,
   fast,
   className,
-}: TextScrollerProps) {
+}: ScrollingTextProps) {
   const listItemStyles = "bg-slate-200 px-4 py-2 dark:bg-slate-800";
 
   return (
@@ -44,4 +44,4 @@ function TextScroller({
   );
 }
 
-export default TextScroller;
+export default ScrollingText;
