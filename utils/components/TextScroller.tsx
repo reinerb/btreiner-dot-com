@@ -14,12 +14,33 @@ function TextScroller({
   fast,
   className,
 }: TextScrollerProps) {
+  const listItemStyles = "bg-slate-200 px-4 py-2 dark:bg-slate-800";
+
   return (
-    <ul className={twMerge("flex gap-1", className)}>
-      {elements.map((element) => (
-        <li>{element}</li>
-      ))}
-    </ul>
+    <div
+      className="scrolling-text max-w-xs motion-safe:overflow-x-hidden lg:max-w-xl"
+      data-direction={reverse ? "right" : "left"}
+      data-speed={fast ? "fast" : "slow"}
+    >
+      <ul
+        className={twMerge(
+          "mx-8 flex gap-2 motion-safe:w-max motion-reduce:flex-wrap motion-reduce:justify-center",
+          className,
+        )}
+      >
+        {elements.map((element) => (
+          <li className={listItemStyles}>{element}</li>
+        ))}
+        {elements.map((element) => (
+          <li
+            className={twMerge(listItemStyles, "motion-reduce:hidden")}
+            aria-hidden
+          >
+            {element}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

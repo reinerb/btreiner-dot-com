@@ -27,4 +27,51 @@
   nav a.active {
     @apply text-primary-700 transition-colors duration-200 hover:text-primary-800 active:text-primary-900 dark:text-primary-300 dark:hover:text-primary-200 dark:active:text-primary-100;
   }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .scrolling-text {
+      mask: linear-gradient(
+        90deg,
+        transparent,
+        white 15%,
+        white 85%,
+        transparent
+      );
+    }
+
+    .scrolling-text > * {
+      animation: scroll infinite linear;
+      animation-duration: var(--animation-duration, 40s);
+      animation-direction: var(--animation-direction, forwards);
+    }
+
+    .scrolling-text:hover > * {
+      animation-play-state: paused;
+    }
+
+    .scrolling-text[data-direction="left"] {
+      --animation-direction: fowards;
+    }
+
+    .scrolling-text[data-direction="right"] {
+      --animation-direction: reverse;
+    }
+
+    .scrolling-text[data-speed="fast"] {
+      --animation-duration: 20s;
+    }
+
+    .scrolling-text[data-speed="slow"] {
+      --animation-duration: 40s;
+    }
+  }
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 0.25rem));
+  }
 }
