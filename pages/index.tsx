@@ -1,9 +1,23 @@
 import LinkButton from "@/utils/components/LinkButton";
 import Logo from "@/utils/components/Logo";
 import RootLayout from "@/utils/components/RootLayout/RootLayout";
+import TextScroller from "@/utils/components/TextScroller";
 import { Anybody } from "next/font/google";
 
 const anybody = Anybody({ subsets: ["latin"] });
+
+const skills = [
+  "React",
+  "WordPress",
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "Git",
+  "NextJS",
+  "TypeScript",
+  "PHP",
+  "NodeJS",
+];
 
 export default function Home() {
   return (
@@ -27,11 +41,12 @@ export default function Home() {
           <Logo className="inline w-16 fill-primary-800 dark:fill-primary-300 sm:w-24 md:w-28 xl:w-32" />
           einer
         </h1>
-        <ul className="flex divide-x-2 divide-slate-500 text-slate-700 dark:text-slate-300 sm:text-lg">
+        {/* <ul className="flex divide-x-2 divide-slate-500 text-slate-700 dark:text-slate-300 sm:text-lg">
           <li className="px-4">Frontend</li>
           <li className="px-4">React</li>
           <li className="px-4">WordPress</li>
-        </ul>
+        </ul> */}
+        <TextScroller elements={skills} />
         <div className="flex max-w-fit flex-col items-center gap-4 bg-primary-800 p-4 text-center text-slate-50 dark:bg-primary-300 dark:text-slate-950">
           <p className="font-heading font-semibold sm:text-lg">
             Let's build something incredible together.
