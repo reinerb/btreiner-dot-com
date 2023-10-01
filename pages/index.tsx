@@ -52,6 +52,30 @@ export default function Home() {
           <li className="px-4">WordPress</li>
         </ul> */}
         <ScrollingText elements={skills} />
+        <div className="flex flex-wrap justify-center gap-4">
+          <LinkButton small href="/About">
+            About Me
+          </LinkButton>
+          <LinkButton small href="/portfolio">
+            Portfolio
+          </LinkButton>
+          <LinkButton
+            small
+            href="https://github.com/reinerb"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            GitHub
+          </LinkButton>
+          <LinkButton
+            small
+            href="https://linkedin.com/in/benjamin-t-reiner"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            LinkedIn
+          </LinkButton>
+        </div>
         <div className="flex max-w-fit flex-col items-center gap-4 bg-primary-800 p-4 text-center text-slate-50 dark:bg-primary-300 dark:text-slate-950">
           <p className="font-heading font-semibold sm:text-lg">
             Ready to make something incredible?
