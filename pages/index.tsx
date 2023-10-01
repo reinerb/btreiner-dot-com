@@ -1,4 +1,4 @@
-import HamburgerNav from "@/utils/Navigation/HamburgerNav";
+import HamburgerNav from "@/utils/components/Navigation/HamburgerNav";
 import LinkButton from "@/utils/components/LinkButton";
 import Logo from "@/utils/components/Logo";
 import RootLayout from "@/utils/components/RootLayout/RootLayout";

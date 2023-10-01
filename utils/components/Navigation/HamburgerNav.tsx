@@ -2,10 +2,12 @@ import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { NavLink } from "../types/Generics";
+import { NavLink } from "../../types/Generics";
 import SidebarNav from "./SidebarNav";
-import { baseNav } from "../components/BaseNav";
-import ColorModeSwitcher from "../components/ColorModeSwitcher";
+import { baseNav } from "../BaseNav";
+import dynamic from "next/dynamic";
+
+const ColorModeSwitcher = dynamic(() => import("../ColorModeSwitcher"));
 
 type HamburgerNavProps = {
   navItems?: NavLink[];

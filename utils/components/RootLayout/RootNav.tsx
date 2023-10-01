@@ -2,8 +2,8 @@
 
 import React from "react";
 import { useWindowSize } from "@uidotdev/usehooks";
-import SidebarNav from "@/utils/Navigation/SidebarNav";
-import HamburgerNav from "@/utils/Navigation/HamburgerNav";
+import SidebarNav from "@/utils/components/Navigation/SidebarNav";
+import HamburgerNav from "@/utils/components/Navigation/HamburgerNav";
 import { baseNav } from "../BaseNav";
 
 type RootNavProps = {

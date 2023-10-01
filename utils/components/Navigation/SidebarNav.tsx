@@ -1,7 +1,7 @@
 import React from "react";
-import { NavLink } from "../types/Generics";
+import { NavLink } from "../../types/Generics";
 import Link from "next/link";
-import { baseNav } from "../components/BaseNav";
+import { baseNav } from "../BaseNav";
 
 type SidebarNavProps = {
   navItems?: NavLink[];
