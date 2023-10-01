@@ -13,7 +13,7 @@ type RootLayoutProps = {
   metaDescription?: string;
   children: React.ReactNode;
   activeNav: "home" | "portfolio" | "about" | "contact";
-
+  noSidebar?: boolean;
   className?: string;
 };
 
@@ -21,7 +21,7 @@ function RootLayout({
   title,
   metaDescription,
   children,
-
+  noSidebar,
   activeNav,
   className,
 }: RootLayoutProps) {
@@ -32,12 +32,18 @@ function RootLayout({
         <meta name="description" content={metaDescription} />
       </Head>
       <div
-        className={`grid-rows-root-mobile md:grid-rows-root-desktop md:grid-cols-root grid h-screen ${inter.className} ${saira.variable}`}
+        className={twMerge(
+          `h-screen ${inter.className} ${saira.variable}`,
+          !noSidebar &&
+            "grid grid-rows-root-mobile md:grid-cols-root md:grid-rows-root-desktop",
+        )}
       >
-        <Header
-          activeNav={activeNav}
-          className="bg-slate-200 dark:bg-slate-800"
-        />
+        {!noSidebar && (
+          <Header
+            activeNav={activeNav}
+            className="bg-slate-200 dark:bg-slate-800"
+          />
+        )}
         <main
           className={twMerge(
             "m-4 md:row-span-2 md:m-0 md:h-screen md:overflow-y-auto md:p-4",
@@ -46,7 +52,7 @@ function RootLayout({
         >
           {children}
         </main>
-        <Footer className="bg-slate-200 dark:bg-slate-800" />
+        {!noSidebar && <Footer className="bg-slate-200 dark:bg-slate-800" />}
       </div>
     </>
   );
