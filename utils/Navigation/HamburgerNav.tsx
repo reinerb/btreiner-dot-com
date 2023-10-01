@@ -45,7 +45,7 @@ function HamburgerNav({ navItems, activeNav, className }: HamburgerNavProps) {
         >
           <FontAwesomeIcon icon={faX} />
         </button>
-        <SidebarNav navItems={navItems} />
+        <SidebarNav navItems={navItems} activeNav={activeNav} />
       </div>
     </>
   );
