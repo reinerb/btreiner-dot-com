@@ -59,7 +59,7 @@ export default function Home() {
         <ScrollingText elements={skills} />
         <div className="flex max-w-fit flex-col items-center gap-4 bg-primary-800 p-4 text-center text-slate-50 dark:bg-primary-300 dark:text-slate-950">
           <p className="font-heading font-semibold sm:text-lg">
-            Let's build something incredible together.
+            Ready to make something incredible?
           </p>
           <LinkButton
             href="/contact"

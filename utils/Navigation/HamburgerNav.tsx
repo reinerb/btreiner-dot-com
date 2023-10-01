@@ -5,6 +5,7 @@ import { twMerge } from "tailwind-merge";
 import { NavLink } from "../types/Generics";
 import SidebarNav from "./SidebarNav";
 import { baseNav } from "../components/BaseNav";
+import ColorModeSwitcher from "../components/ColorModeSwitcher";
 
 type HamburgerNavProps = {
   navItems?: NavLink[];
@@ -42,13 +43,16 @@ function HamburgerNav({
           active ? "translate-x-0" : "translate-x-full",
         )}
       >
-        <button
-          aria-label="close nav"
-          className="self-end"
-          onClick={() => setActive(false)}
-        >
-          <FontAwesomeIcon icon={faX} />
-        </button>
+        <div className="flex w-full items-center justify-between text-2xl">
+          <ColorModeSwitcher className="text-2xl" />
+          <button
+            aria-label="close nav"
+            className="self-end"
+            onClick={() => setActive(false)}
+          >
+            <FontAwesomeIcon icon={faX} />
+          </button>
+        </div>
         <SidebarNav navItems={navItems} activeNav={activeNav} />
       </div>
     </>
