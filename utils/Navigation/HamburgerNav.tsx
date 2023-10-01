@@ -3,16 +3,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { NavLink } from "../types/Generics";
-import Link from "next/link";
 import SidebarNav from "./SidebarNav";
+import { baseNav } from "../components/BaseNav";
 
 type HamburgerNavProps = {
-  navItems: NavLink[];
+  navItems?: NavLink[];
   activeNav?: "home" | "portfolio" | "about" | "contact";
   className?: string;
 };
 
-function HamburgerNav({ navItems, activeNav, className }: HamburgerNavProps) {
+function HamburgerNav({
+  navItems = baseNav,
+  activeNav,
+  className,
+}: HamburgerNavProps) {
   const [active, setActive] = useState<boolean>(false);
 
   return (
@@ -34,7 +38,7 @@ function HamburgerNav({ navItems, activeNav, className }: HamburgerNavProps) {
       />
       <div
         className={twMerge(
-          "fixed right-0 top-0 z-50 flex h-screen w-1/2 flex-col items-center bg-slate-200 p-6 transition-transform duration-300 dark:bg-slate-800 sm:w-1/4",
+          "fixed right-0 top-0 z-50 flex h-screen w-1/2 flex-col items-center bg-slate-200 p-6 transition-transform duration-300 dark:bg-slate-800 sm:w-1/4 lg:w-1/5 xl:w-1/6 2xl:w-1/12",
           active ? "translate-x-0" : "translate-x-full",
         )}
       >

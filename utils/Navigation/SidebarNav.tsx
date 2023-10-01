@@ -1,14 +1,19 @@
 import React from "react";
 import { NavLink } from "../types/Generics";
 import Link from "next/link";
+import { baseNav } from "../components/BaseNav";
 
 type SidebarNavProps = {
-  navItems: NavLink[];
+  navItems?: NavLink[];
   activeNav?: "home" | "portfolio" | "about" | "contact";
   className?: string;
 };
 
-function SidebarNav({ navItems, activeNav, className }: SidebarNavProps) {
+function SidebarNav({
+  navItems = baseNav,
+  activeNav,
+  className,
+}: SidebarNavProps) {
   return (
     <nav className={className}>
       <ul className="gap-0 divide-y-2 divide-slate-800 text-center text-lg font-semibold dark:divide-slate-200">
