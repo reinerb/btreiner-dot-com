@@ -14,7 +14,7 @@ function ScrollingText({
   fast,
   className,
 }: ScrollingTextProps) {
-  const listItemStyles = "bg-slate-200 px-4 py-2 dark:bg-slate-800";
+  const listItemStyles = "bg-slate-300 px-4 py-2 dark:bg-slate-700";
 
   return (
     <div
