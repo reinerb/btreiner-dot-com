@@ -18,7 +18,7 @@ function ScrollingText({
 
   return (
     <div
-      className="scrolling-text max-w-xs motion-safe:overflow-x-hidden lg:max-w-xl"
+      className="scrolling-text max-w-xs motion-safe:overflow-x-hidden lg:max-w-xl 2xl:max-w-2xl"
       data-direction={reverse ? "right" : "left"}
       data-speed={fast ? "fast" : "slow"}
     >
