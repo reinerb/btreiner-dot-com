@@ -29,10 +29,13 @@ function ScrollingText({
         )}
       >
         {elements.map((element) => (
-          <li className={listItemStyles}>{element}</li>
+          <li key={element} className={listItemStyles}>
+            {element}
+          </li>
         ))}
         {elements.map((element) => (
           <li
+            key={`${element} second`}
             className={twMerge(listItemStyles, "motion-reduce:hidden")}
             aria-hidden
           >

@@ -9,11 +9,13 @@ const anybody = Anybody({ subsets: ["latin"] });
 const skills = [
   "React",
   "WordPress",
+  "Front-End",
   "HTML",
   "CSS",
   "JavaScript",
   "Git",
   "NextJS",
+  "JQuery",
   "TypeScript",
   "PHP",
   "NodeJS",
