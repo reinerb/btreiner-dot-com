@@ -47,6 +47,7 @@ function RootLayout({
         <main
           className={twMerge(
             "m-4 md:row-span-2 md:m-0 md:h-screen md:overflow-y-auto md:p-4",
+            noSidebar && "m-0",
             className,
           )}
         >
