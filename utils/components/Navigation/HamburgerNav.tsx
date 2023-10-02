@@ -7,7 +7,9 @@ import SidebarNav from "./SidebarNav";
 import { baseNav } from "../BaseNav";
 import dynamic from "next/dynamic";
 
-const ColorModeSwitcher = dynamic(() => import("../ColorModeSwitcher"));
+const ColorModeSwitcher = dynamic(() => import("../ColorModeSwitcher"), {
+  ssr: false,
+});
 
 type HamburgerNavProps = {
   navItems?: NavLink[];
