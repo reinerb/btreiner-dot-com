@@ -33,11 +33,16 @@ function RootLayout({
       </Head>
       <div
         className={twMerge(
-          `h-screen ${inter.className} ${saira.variable}`,
+          `relative h-screen ${inter.className} ${saira.variable}`,
           !noSidebar &&
             "grid grid-rows-root-mobile md:grid-cols-root md:grid-rows-root-desktop",
         )}
       >
+        <div className="absolute left-0 top-0 w-24 -translate-y-full bg-slate-800 px-4 py-2 text-center transition-transform focus-within:translate-y-0">
+          <a href="#content" tabIndex={1}>
+            Skip to content
+          </a>
+        </div>
         {!noSidebar && (
           <Header
             activeNav={activeNav}
@@ -45,6 +50,7 @@ function RootLayout({
           />
         )}
         <main
+          id="content"
           className={twMerge(
             "m-4 md:row-span-2 md:m-0 md:h-screen md:overflow-y-auto md:p-4",
             noSidebar && "m-0",
