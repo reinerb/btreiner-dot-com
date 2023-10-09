@@ -1,6 +1,6 @@
 import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { NavLink } from "../../types/Generics";
 import SidebarNav from "./SidebarNav";
@@ -23,6 +23,20 @@ function HamburgerNav({
   className,
 }: HamburgerNavProps) {
   const [active, setActive] = useState<boolean>(false);
+
+  const keyHandler = (e: KeyboardEvent) => {
+    if (e.key === "Escape" && active) {
+      setActive(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keyup", keyHandler, false);
+
+    return () => {
+      document.removeEventListener("keyup", keyHandler, false);
+    };
+  });
 
   return (
     <>
