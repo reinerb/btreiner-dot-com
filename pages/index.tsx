@@ -17,6 +17,7 @@ const skills = [
   "Git",
   "NextJS",
   "JQuery",
+  "Svelte",
   "TypeScript",
   "PHP",
   "NodeJS",
