@@ -21,6 +21,7 @@ export default function Document() {
           sizes="16x16"
           href="/favicon/favicon-16x16.png"
         />
+        <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
       </Head>
       <body className="overflow-x-hidden">
         <Main />
