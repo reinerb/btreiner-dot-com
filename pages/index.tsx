@@ -49,7 +49,7 @@ export default function Home() {
         </h1>
         <ScrollingText elements={skills} />
         <div className="flex flex-wrap justify-center gap-4">
-          <LinkButton small href="/About">
+          <LinkButton small href="/about">
             About Me
           </LinkButton>
           <LinkButton small href="/portfolio">

@@ -12,7 +12,7 @@ function About() {
       activeNav="about"
       className="grid place-items-center"
     >
-      <div className="grid gap-4 md:grid-cols-3 xl:grid-cols-4 xl:gap-8 2xl:grid-cols-5">
+      <div className="grid gap-4 px-2 sm:px-4 md:grid-cols-3 md:px-8 xl:grid-cols-4 xl:gap-8 2xl:grid-cols-5">
         <Image
           layout="responsive"
           src={benAndLibby}
@@ -67,7 +67,10 @@ function About() {
             </ul>
             <p>
               A copy of my resume is available{" "}
-              <Link href="/resume.pdf">here</Link>.
+              <Link href="/resume.pdf" target="_blank">
+                here
+              </Link>
+              .
             </p>
           </section>
           <section className="flex flex-col gap-2">
@@ -102,8 +105,8 @@ function About() {
               with my friends, a romp through a dungeon in Pathfinder, or a
               high-stakes Magic: the Gathering tournament. I love finding
               unconventional ways to play - new strategies, cool combos, weird
-              restrictions, or other ways to make the games I enjoy more
-              challenging.
+              gameplay restrictions, or other ways to make the games I enjoy
+              more challenging.
             </p>
             <p>
               When I'm not engaging with those hobbies, you'll find me outside,
