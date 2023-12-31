@@ -33,8 +33,10 @@
       mask: linear-gradient(
         90deg,
         transparent,
-        white 15%,
-        white 85%,
+        transparent 5%,
+        white 25%,
+        white 75%,
+        transparent 95%,
         transparent
       );
     }
