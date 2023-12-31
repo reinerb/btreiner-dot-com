@@ -34,7 +34,10 @@ export const getStaticProps: GetStaticProps<PortfolioPageProps> = async () => {
     };
   });
 
-  return { props: { projects } };
+  return {
+    props: { projects },
+    revalidate: 1800, // Regenerate every 30 minutes
+  };
 };
 
 function PortfolioPage({ projects }: PortfolioPageProps) {
@@ -46,7 +49,7 @@ function PortfolioPage({ projects }: PortfolioPageProps) {
     >
       <section className="mb-4">
         <h1 className="mb-1 text-4xl font-bold">My Portfolio</h1>
-        <p>Here are some of my favorite projects I've worked on.</p>
+        <p>These are some of my favorite projects I've worked on.</p>
       </section>
       <ProjectGrid>
         {projects.map((project) => (

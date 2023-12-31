@@ -38,7 +38,10 @@ export const getStaticProps: GetStaticProps<ProjectPageProps> = async (
     featuredMedia,
   };
 
-  return { props: { ...project } };
+  return {
+    props: { ...project },
+    revalidate: 1800, // Regenerate every 30 minutes
+  };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -52,7 +55,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     };
   });
 
-  return { paths, fallback: false };
+  return { paths, fallback: "blocking" };
 };
 
 function ProjectPage({
