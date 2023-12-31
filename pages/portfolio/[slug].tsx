@@ -24,6 +24,8 @@ export const getStaticProps: GetStaticProps<ProjectPageProps> = async (
     fields: ["acf", "content", "tools", "featured_media"],
   }).then((res) => res[0]);
 
+  if (!projectData) return { notFound: true };
+
   const featuredMedia = await singleMediaQuery({
     id: projectData.featured_media,
   });
