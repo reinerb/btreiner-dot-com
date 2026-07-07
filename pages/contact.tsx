@@ -10,7 +10,7 @@ function Contact() {
     <GoogleReCaptchaProvider reCaptchaKey={RECAPTCHA_SITE_KEY}>
       <RootLayout
         title="Contact | Ben Reiner"
-        metaDescription="Need a frontend developer to help bring your vision to life? Send me a message!"
+        metaDescription="Need a full-stack developer to help bring your vision to life? Send me a message."
         className="grid place-items-center gap-4 md:overflow-y-hidden"
         activeNav={"contact"}
       >
