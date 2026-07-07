@@ -8,25 +8,25 @@ import { Anybody } from "next/font/google";
 const anybody = Anybody({ subsets: ["latin"] });
 
 const skills = [
-  "React",
+  "TypeScript",
+  "JavaScript",
+  "PHP",
+  "MySQL",
   "WordPress",
-  "Front-End",
+  "Timber & Twig",
   "HTML",
   "CSS",
-  "JavaScript",
-  "Git",
-  "NextJS",
-  "JQuery",
-  "TypeScript",
-  "PHP",
-  "NodeJS",
+  "SCSS",
+  "Vite",
+  "React",
+  "Next.js",
 ];
 
 export default function Home() {
   return (
     <RootLayout
       title="Ben Reiner | Web Developer"
-      metaDescription="Hi! I'm Ben Reiner, a freelance frontend developer. This is a collection of some cool projects I've made."
+      metaDescription="Hi! I'm Ben Reiner, a full stack developer. This is a collection of some cool projects I've made."
       activeNav="home"
       noSidebar
       className="grid h-screen place-items-center bg-gradient-to-b from-slate-50 via-slate-200 to-slate-50 dark:from-slate-950 dark:via-slate-800 dark:to-slate-950"
